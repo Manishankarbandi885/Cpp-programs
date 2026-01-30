@@ -20,6 +20,7 @@ class Bank
         {
             if(total<=0)
             {
+                cout<<"Insufficient balance"<<endl;
                 cout<<"Transaction not possible "<<endl;
                 
             }
