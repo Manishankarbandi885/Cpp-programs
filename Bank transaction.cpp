@@ -9,7 +9,7 @@ class Bank
         int total;
         Bank()
         {
-            cout<<"Welcome to this bank"<<endl;
+            cout<<"Welcome to Vardhaman bank"<<endl;
             
         }
         ~Bank()
