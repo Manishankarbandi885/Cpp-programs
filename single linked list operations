@@ -1,4 +1,12 @@
 //Single linked list operations
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
 #include <iostream>
 using namespace std;
 class Node{
@@ -114,6 +122,22 @@ void deleteAtPosition(Node*& head, int pos)
     temp->next = deleteNode->next;
     delete deleteNode;
 }
+int SearchElement(Node*&head,int value)
+{
+    Node*temp = head;
+    int pos=1;
+    while(temp!=NULL)
+    {
+        if(temp->data == value )
+        {
+            return pos;
+        }
+        
+        temp = temp->next;
+        pos++;
+    }
+    return -1;
+}
 int main()
 {
     Node * head = new Node();
@@ -131,6 +155,7 @@ int main()
     cout<<"4. Delete at beginning "<<endl;
     cout<<"5. Delete at end "<<endl;
     cout<<"6.Delete at given position"<<endl;
+    cout<<"7. Search element "<<endl;
     cin>>choice;
     switch(choice)
     {
@@ -182,8 +207,27 @@ int main()
                    deleteAtPosition(head,pos);
                    display(head); 
                    break;
-                }           
+                }  
+        case 7  : 
+                {
+                    int ele;
+                    cout<<"Enter key element : ";
+                    cin>>ele;
+                    cout<<"Element found at : ";
+                    int res = SearchElement(head,ele);
+                    if(res>0)
+                    {
+                        cout<<res;
+                    }
+                    else
+                    {
+                        cout<<"Element not found "<<endl;
+                    }
+                    break;
+                    
+                }
         default : cout<<"Invalid choice"<<endl;           
     }
     return 0;
 }
+ 
