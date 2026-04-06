@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+#define MAX 100
+class PostFixEvaluation{
+    private : 
+    int st[MAX];
+    int top;
+    public:
+    PostFixEvaluation()
+    {
+        top=-1;
+    }
+    void push(int val)
+    {
+        if(top==MAX-1)
+        {
+            cout<<"Stack overflow \n";
+            return;
+        }
+        else {
+            top++;
+            st[top]= val;
+        }
+    }
+    int pop(){
+        if(top==-1){
+            cout<<"Stack underflow\n";
+            return -1;
+        }
+        return st[top--];
+    }
+    int EvalPost(char expn[])
+    {
+        int i=0;int x,y,res;
+        while(expn[i]!='\0')
+        {
+            if(isdigit(expn[i])){
+                push(expn[i]-'0');
+            }
+            else
+            {
+                y=pop();
+                x=pop();
+                
+            
+            switch(expn[i])
+            {
+                case '+' : res = x+y;
+                break;
+                case '-' : res = x-y;
+                break;
+                case '*' : res = x*y;
+                break;
+                case '/' : res = x/y;
+                break;
+                case '%' : res = x%y;
+                break;
+            }
+            push(res);
+        }
+        i++;
+    }
+    return pop();
+    }
+};
+int main()
+{
+    PostFixEvaluation obj;
+    char expn[100];
+    cout<<"\n Enter postfix expression : \n";
+    cin.getline(expn,100);
+    int res = obj.EvalPost(expn);
+    cout<<"Answer : "<<res<<endl;
+    return 0;
+}
+
+
+Output : 
+
+
+ Enter postfix expression : 
+23+34+*34+/
+Answer : 5
+
+
+=== Code Execution Successful ===
