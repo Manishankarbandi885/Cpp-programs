@@ -1,0 +1,91 @@
+#include<iostream>
+#include<cctype>
+using namespace std;
+
+#define SIZE 50
+
+class InfixToPostfix {
+private:
+    char stack[SIZE];
+    int top;
+
+public:
+    InfixToPostfix() {
+        top = -1;
+    }
+
+    void push(char item) {
+        if (top == SIZE - 1) {
+            cout << "\nStack Overflow\n";
+            return;
+        }
+        stack[++top] = item;
+    }
+
+    char pop() {
+        if (top == -1) {
+            cout << "\nStack is empty\n";
+            return '\0';
+        }
+        return stack[top--];
+    }
+
+    int priority(char op) {
+        if (op == '+' || op == '-') return 1;
+        if (op == '*' || op == '/') return 2;
+        return 0;
+    }
+
+    void conversion() {
+        char in[30], post[30];
+        int i, j = 0;
+
+        cout << "Enter Infix expression:\n";
+        cin.getline(in, 30);
+
+        for (i = 0; in[i] != '\0'; i++) {
+            if (in[i] == '(') {
+                push(in[i]);
+            }
+            else if (isalnum(in[i])) {
+                post[j++] = in[i];
+            }
+            else if (in[i] == ')') {
+                while (top > -1 && stack[top] != '(') {
+                    post[j++] = pop();
+                }
+                pop(); 
+            }
+            else { 
+                while (top > -1 && stack[top] != '(' &&
+                       priority(stack[top]) >= priority(in[i])) {
+                    post[j++] = pop();
+                }
+                push(in[i]); 
+            }
+        }
+
+        while (top > -1) {
+            post[j++] = pop();
+        }
+
+        post[j] = '\0'; 
+
+        cout << "Postfix Expression is:\n";
+        cout << post;
+    }
+};
+
+int main() {
+    InfixToPostfix obj;
+    obj.conversion();
+    return 0;
+}
+
+
+
+Output  : 
+Enter Infix expression:
+(A+B)/(C+D)-(D*E)\0
+Postfix Expression is:
+AB+CD+/DE*-
