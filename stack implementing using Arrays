@@ -1,0 +1,98 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+using namespace std;
+#define MAX 5
+class Stack{
+     private :
+     int stack[MAX];
+     int top;
+     public:
+     Stack()
+     {
+         top = -1;
+     }
+     
+     void push(int x)
+     {
+         if(top==MAX-1)
+         {
+             cout<<"Stack overflow\n";
+             return;
+         }
+         
+         stack[++top]=x;
+         
+     }
+     void pop()
+     {
+         if(top==-1)
+         {
+             cout<<"Stack Underflow\n";
+             return;
+         }
+         
+         cout<<"Popped element is : "<<stack[top--]<<endl;
+         return;
+     }
+     void display()
+     {
+         if(top==-1)
+         {
+             cout<<"Stack is empty \n";
+             return ;
+         }
+         cout<<"Stack elements are : \n";
+         for(int i=top;i>=0;i--)
+         {
+             cout<<stack[i]<<" ";
+         }
+     }
+     bool isEmpty()
+     {
+         if(top==-1)
+             return true;
+        else
+             return false;
+     }
+      bool isFull()
+     {
+         if(top==MAX-1)
+             return true;
+        else
+             return false;
+     }
+     
+};
+int main()
+{
+    Stack s;
+    if(s.isEmpty()){
+        cout<<"Stack underflowflow\n";
+    }
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.display();
+    if(s.isFull())
+    {
+        cout<<"\nStack Overflow\n";
+    }
+    s.pop();
+    s.display();
+
+    return 0;
+}
+
+
+
+
+
