@@ -124,3 +124,43 @@ int main() {
 
     return 0;
 }
+
+
+
+output : 
+
+Enter your choice:
+1. Insert
+2. Inorder
+3. Preorder
+4. Postorder
+5. Exit
+1
+Enter value: 10
+10 inserted as root
+
+Enter your choice:
+1
+Enter value: 5
+Insert 5 to left or right of 10? (l/r): l
+
+Enter your choice:
+1
+Enter value: 20
+Insert 20 to left or right of 10? (l/r): r
+
+Enter your choice:
+2
+Inorder Traversal: 5 10 20
+
+Enter your choice:
+3
+Preorder Traversal: 10 5 20
+
+Enter your choice:
+4
+Postorder Traversal: 5 20 10
+
+Enter your choice:
+5
+Exiting...
